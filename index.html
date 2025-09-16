@@ -425,32 +425,50 @@
 
           <div class="col-lg-7">
             <!-- Configura forms/contact.php para enviar al correo anterior -->
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Nombre</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required />
-                </div>
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required />
-                </div>
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Asunto</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required />
-                </div>
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Mensaje</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
-                </div>
-                <div class="col-md-12 text-center">
-                  <div class="loading">Enviando...</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">¡Tu mensaje ha sido enviado. Gracias!</div>
-                  <button type="submit">Enviar</button>
-                </div>
-              </div>
-            </form>
+    <form id="contact-form"
+      action="https://formspree.io/f/abcdwxyz"
+      method="POST"
+      class="php-email-form" novalidate>
+  <div class="row gy-4">
+    <div class="col-md-6">
+      <label for="name-field" class="pb-2">Nombre</label>
+      <input type="text" name="name" id="name-field" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="email-field" class="pb-2">Email</label>
+      <input type="email" name="email" id="email-field" class="form-control" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="subject-field" class="pb-2">Asunto</label>
+      <input type="text" name="subject" id="subject-field" class="form-control" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="message-field" class="pb-2">Mensaje</label>
+      <textarea name="message" id="message-field" rows="10" class="form-control" required></textarea>
+    </div>
+
+    <!-- Config extra para Formspree -->
+    <input type="hidden" name="_subject" value="Nuevo contacto desde Soluc10na">
+    <!-- redirección opcional tras éxito -->
+    <!-- <input type="hidden" name="_redirect" value="https://www.soluc10na.com/gracias.html"> -->
+
+    <!-- Honeypot anti-spam (oculto) -->
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+
+    <div class="col-md-12 text-center">
+      <div class="loading" style="display:none">Enviando...</div>
+      <div class="error-message" style="display:none"></div>
+      <div class="sent-message" style="display:none">¡Tu mensaje ha sido enviado. Gracias!</div>
+      <button type="submit">Enviar</button>
+    </div>
+  </div>
+</form>
+
+
+
           </div><!-- End Contact Form -->
         </div>
       </div>
