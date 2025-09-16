@@ -9,6 +9,51 @@
   gtag('config', 'G-DHJRNBY3NT'); // ← reemplaza con tu ID
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const loading = form.querySelector('.loading');
+  const sent = form.querySelector('.sent-message');
+  const error = form.querySelector('.error-message');
+
+  function show(el){ if(el) el.style.display='block'; }
+  function hide(el){ if(el) el.style.display='none'; }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hide(sent); hide(error); show(loading);
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const data = await res.json().catch(() => ({}));
+      hide(loading);
+
+      if (res.ok) {
+        show(sent);   // mostramos el div "¡Tu mensaje ha sido enviado!"
+        form.reset(); // limpiamos el formulario
+      } else {
+        const msg = (data && data.errors && data.errors.map(e => e.message).join(', '))
+                  || 'No se pudo enviar el formulario. Intenta de nuevo.';
+        error.textContent = msg;
+        show(error);
+      }
+
+    } catch (err) {
+      hide(loading);
+      error.textContent = 'Error de red. Revisa tu conexión e intenta nuevamente.';
+      show(error);
+    }
+  });
+});
+</script>
+
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -22,9 +67,21 @@
   <meta property="og:description" content="Aplicaciones web y móviles, CRM & flujos, integraciones de APIs y nube." />
   <meta property="og:image" content="assets/img/og-soluc10na.jpg" />
 
-  <!-- Favicons -->
+
+  <!-- <link rel="icon" href="assets/img/soluc10na-logo.svg" type="image/svg+xml">
+
+
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="32x32">
+
+
   <link href="assets/img/favicon.png" rel="icon" />
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" /> -->
+
+  <link rel="icon" href="assets/img/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/img/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/favicon/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="favicon/site.webmanifest">
+
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -59,10 +116,13 @@
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- <img src="assets/img/logo.png" alt="Soluc10na" height="32"> -->
-        <h1 class="sitename m-0">Soluc10na</h1>
-      </a>
+    <a href="index.html" class="logo">
+  <img src="assets/img/logo.png" alt="Soluc10na"  class="logo-img logo-pill">
+</a>
+
+
+
+                      
 
       <nav id="navmenu" class="navmenu">
         <ul>
@@ -94,7 +154,7 @@
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="Soluc10na - soluciones a medida" />
+          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="Soluc10na - soluciones a medida" />
           </div>
         </div>
       </div>
@@ -426,7 +486,7 @@
           <div class="col-lg-7">
             <!-- Configura forms/contact.php para enviar al correo anterior -->
     <form id="contact-form"
-      action="https://formspree.io/f/abcdwxyz"
+      action="https://formspree.io/f/xwpnjzqy"
       method="POST"
       class="php-email-form" novalidate>
   <div class="row gy-4">
@@ -480,7 +540,7 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="#hero" class="d-flex align-items-center"><span class="sitename">Soluc10na</span></a>
+        <a href="#hero" class="d-flex align-items-center"><span class="sitename">Soluc10na</span></a>
           <div class="footer-contact pt-3">
             <p>Lima, Perú</p>
             <p class="mt-3"><strong>Tel:</strong> <span>+51 927 135 207</span></p>
@@ -535,7 +595,7 @@
 
   <!-- Vendor JS -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
