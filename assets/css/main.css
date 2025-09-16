@@ -717,7 +717,7 @@ h6 {
   bottom: -15px;
   z-index: 99999;
   background-color: var(--accent-color);
-  width: 44px;
+  width: 60px;
   height: 44px;
   border-radius: 50px;
   transition: all 0.4s;
@@ -737,7 +737,7 @@ h6 {
 .scroll-top.active {
   visibility: visible;
   opacity: 1;
-  bottom: 15px;
+  bottom: 100px;
 }
 
 /*--------------------------------------------------------------
@@ -3609,4 +3609,39 @@ section,
   height: 40px;   /* Ajusta según tu header */
   width: auto;    /* Mantiene proporción */
   display: block;
+}
+
+
+/* Botón flotante de WhatsApp */
+.wame{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;           /* verde WhatsApp */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;                /* tamaño del ícono */
+  box-shadow: 0 8px 24px rgba(0,0,0,.22);
+  z-index: 1100;                  /* por encima del header */
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s;
+}
+.wame:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.28);
+  text-decoration: none;
+  color: #fff;
+}
+@media (max-width: 576px){
+  .wame{
+    right: 14px;
+    bottom: 14px;
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+  }
 }
