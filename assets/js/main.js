@@ -1,6 +1,6 @@
 /**
-* Template Name: Arsha
-* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+* Template Name: Soluc10na
+* Template URL: https://bootstrapmade.com/Soluc10na-free-bootstrap-html-template-corporate/
 * Updated: Feb 22 2025 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
